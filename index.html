@@ -1,0 +1,257 @@
+<html>
+<head>
+  <title>Resume < Atharva Tendle ></title>
+  <meta charset="UTF-8"><!--[if IE]><![endif]-->
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,400,400i,600,600i,700,700i" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Catamaran:200,300,400,500,600,700" rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div id="content"></div>
+  <script src="https://fb.me/react-0.14.6.js"></script>
+  <script src="https://fb.me/react-dom-0.14.6.js"></script>
+  <script src="https://unpkg.com/react@0.12.1/dist/JSXTransformer.js"></script>
+  <script type="text/jsx">
+    var DATA = {
+        name: "Atharva Tendle",
+        subtext: "A Student and Developer based in Lincoln, NE",
+        jobStatus: "Data Science Analyst -> Bureau of Business Research, University of Nebraska-Lincoln",
+        devPosition: "Developer(Associate) -> Design Studio, J.S.Raikes School of Computer Science and Management",
+        facebookURL: 'https://www.facebook.com/atharva.tendle',
+        instaURL: 'https://www.instagram.com/atharvatendle/',
+        githubURL: 'https://github.com/Atharva7',
+        linkedinURL: 'https://www.linkedin.com/in/atharva-tendle',
+        resumeURL: '../portfolio/resume/Resume- Atharva Tendle'
+      }
+  
+      var App = React.createClass({
+        render: function() {
+          return(
+            <div className="app">
+              <Left
+                name={this.props.profileData.name}
+                subtext={this.props.profileData.subtext}
+                jobStatus={this.props.profileData.jobStatus}
+                devPosition={this.props.profileData.devPosition}
+                facebookURL={this.props.profileData.facebookURL}
+                instaURL={this.props.profileData.instaURL}
+                githubURL={this.props.profileData.githubURL}
+                linkedinURL={this.props.profileData.linkedinURL}
+              />
+              <Right
+                intro={this.props.profileData.intro}
+                resumeURL= {this.props.profileData.resumeURL}
+              />
+            </div>
+          );
+        }
+      });
+  
+      var Left = React.createClass({
+        render: function() {
+          return(
+            <div className="left">
+              <div className="bg-img"></div>
+              <div className="left-inner">
+                <div className="info">
+                  <h2 className="name">{this.props.name}</h2>
+                  <h3 className="subtext">{this.props.subtext}</h3>
+                  <h3 className="jobStatus">I work as a:</h3>
+                    <div className="jobStatus">{this.props.jobStatus}</div>
+                    <div className="jobStatus">{this.props.devPosition}</div>
+                  <div className="social-links">
+                    <a href={this.props.facebookURL} target="_blank"><i className="fa fa-facebook"></i></a>
+                    <a href={this.props.instaURL} target="_blank"><i className="fa fa-instagram"></i></a>
+                    <a href={this.props.githubURL} target="_blank"><i className="fa fa-github"></i></a>
+                    <a href={this.props.linkedinURL}  target="_blank"><i className="fa fa-linkedin"></i></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          );
+        }
+      });
+  
+      var Right = React.createClass({
+        render: function() {
+          return(
+            <div className="right">
+              <div className="right-inner">
+                <div className="introduction">
+                  <h4>Intro</h4>
+                  <div className="content">
+                    <p className="intro-p">I am currently in my fourth year of studying Computer Science and Economics at the University of Nebraska-Lincoln.</p>
+                    <p className="intro-p">I am extremely interested in Machine Learning and Artificial Intelligence and also enjoy software development (especially App/Mobile Development)</p>
+                    <span className="intro-p job-pls">I currently aim to pursue a PhD in Computer Science with an AI/ML focus but am also open to any work opportunities</span>
+                  </div>
+                </div>
+                <div className="skills">
+                  <h4>Skills</h4>
+                  <div className="content">
+                    <div className="skill-category">
+                      <strong>Languages: &nbsp;</strong>
+                      <span>Python, C++, Java, C, JavaScript,HTML5, CSS3</span>
+                    </div>
+                    <div className="skill-category">
+                      <strong>Tools and Libraries: &nbsp;</strong>
+                      <span>Git &amp; Github, Android Studio, Jupyter, Numpy, Pandas, Keras, Scikit Learn </span>
+                    </div>
+                  </div>
+                </div>
+                <div className="education">
+                  <h4>Education</h4>
+                  <div className="content">
+                    <div className="university"><a href="https://www.unl.edu/" target="_blank">University of Nebraska-Lincoln</a></div>
+                    <div className="college"><a href="https://cas.unl.edu/" target="_blank">College of Arts and Sciences</a></div>
+                    <div className="major"><strong>Major(s):</strong> Computer Science and Economics</div>
+                    <div className="major"><strong>GPA:</strong> 3.88/4.0</div>
+                    <div className="conc"><strong>Concentration:</strong> Machine Learning and Software Development</div>
+                    <div className="grad-date">Expected Graduation: May 2019</div>
+                  </div>
+                </div>
+                <div className="experience">
+                  <h4>Experience</h4>
+                  <div className="content">
+                  <div className="exp-item">
+                      <div className="job">
+                        <a className="company" href="https://raikes.unl.edu/design-studio/" target="_blank">Design Studio, Jeffrey S. Raikes School of Computer Science and Management</a>
+                        <div className="duration">Aug 2018 &mdash; Present</div>
+                      </div>
+                      <div className="title">Developer(Associate)</div>
+                      <ul className="description">
+                        <li>Wrote scripts which utilized libraries like Numpy, Pandas and Requests to scrape image data from Proxibid servers and then curated the data set for the project using the scraped data.</li>
+                        <li>Will attempt to solve an Hierarchical Image Classification problem for the firm Proxibid via the application of various types of Convolutional Neural Networks.</li>
+                        <li>Will work in a team of 6 to implement an API using the Flask framework which will integrate our NN model with the Proxibid Tech Stack.</li>
+                      </ul>
+                    </div>
+                    <div className="exp-item">
+                      <div className="job">
+                        <a className="company" href="https://business.unl.edu/outreach/bureau-of-business-research/" target="_blank">Bureau of Business Research, UNL</a>
+                        <div className="duration">Feb 2018 &mdash; Present</div>
+                      </div>
+                      <div className="title">Data Science Analyst</div>
+                      <ul className="description">
+                        <li>Implement the O*Net API to search and collect data</li>
+                        <li>Use libraries like urllib3 and Pandas to collect and store data</li>
+                        <li>Implement basic text/language processing algorithms to process data and then using Machine Learning models to map employment data provided by Nebraska Department of Labor to standardized labor codes.</li>
+                        <li>Write algorithms in Python to analyze the data and compute accuracy of mapping for further statistical and economic analysis.</li>
+                      </ul>
+                    </div>
+                    <div className="exp-item">
+                      <div className="job">
+                        <a className="company" href="https://www.fanword.com/" target="_blank">Fanword</a>
+                        <div className="duration">May 2018 &mdash; Aug 2018</div>
+                      </div>
+                      <div className="title">Software Development Intern</div>
+                      <ul className="description">
+                        <li>Learned and implemented various technologies like HTML, CSS JavaScript and WordPress to build the new Fanword website and customize it to our needs.</li>
+                        <li>Handled creation and testing of various functionalities and pages of the website all the way to the website launch.</li>
+                      </ul>
+                    </div>
+                    <div className="exp-item">
+                            <div className="job">
+                              <a className="company" href="https://cas.unl.edu/" target="_blank">College of Arts and Science, UNL</a>
+                              <div className="duration">Jan 2017 &mdash; May 2018</div>
+                            </div>
+                            <div className="title">Information Technology Assistant</div>
+                            <ul className="description">
+                              <li>Trained to adapt to various technology problems and used efficient communication to explain complex software issues and provide apt solutions.</li>
+                            </ul>
+                          </div>
+                  </div>
+                </div>
+                <div className="projects">
+                  <h4>Projects</h4>
+                  <div className="content">
+                    <div className="project-item">
+                      <a className="project-title" href="https://github.com/aagrawal20/song_recommendation_system" target="_blank">Song Recommendation System</a>
+                      <p className="project-desc">Learned various Machine Learning Principles to create a basic song recommendation system which utilized KNN, Linear Regression and a Multilayer Perceptron Classifier to learn the features of a user’s song preferences and the suggested 10 songs which are similar to a user’s tastes.</p>
+                    </div>
+                    <div className="project-item">
+                      <a className="project-title" href="https://github.com/aagrawal20/WIMTA" target="_blank">WIMTA ('Where is my TA')</a>
+                      <p className="project-desc">Created an efficient TA management system (Android App + static web page) as a part of a Hackathon in order to solve a issue at our university. Awarded first position at the Hackathon.</p>
+                      <a href="https://devpost.com/software/wimta">Devpost App profile</a>
+                    </div>
+                    <div className="project-item">
+                      <a className="project-title" href="https://github.com/pranavgupta97/Rythmix" target="_blank">Karaoke App</a>
+                      <p className="project-desc">Built an android application by utilizing Agile methods, for Karaoke starting from the ideation stage all the way to
+                            a functioning prototype in a team of four.</p>
+                    </div>
+                    <div className="project-item">
+                      <a className="project-title" target="_blank">Vending Machine</a>
+                      <p className="project-desc">Programmed a basic vending machine on a processor to perform mathematical calculations which a normal vending machine performs along with displaying activity in a team of two.</p>
+                    </div>
+                    <div className="project-item">
+                            <a className="project-title" href="https://github.com/pranavgupta97/Financial-Management-System" target="_blank">Invoice System</a>
+                            <p className="project-desc">Utilized OOP principles to create a basic Invoice System which generated invoices, with the help of SQL for data recovery and storage, with a team of two.</p>
+                          </div>
+                  </div>
+                </div>
+                <div className="experience">
+                    <h4>Involvement</h4>
+                    <div className="content">
+                    <div className="exp-item">
+                        <div className="job">
+                          <a className="company" href="https://business.unl.edu/academic-programs/clifton-strengths-institute/" target="_blank">Clifton’s Strengths Institute – College of Business, University of Nebraska-Lincoln</a>
+                          <div className="duration">Aug 2018 &mdash; Present</div>
+                        </div>
+                        <div className="title">Clifton Certified Student Strengths Coach</div>
+                        <ul className="description">
+                          <li>Analyzed and understood the individual Strengths of each student and then helped them to incorporate Strengths based thinking into their daily lives to boost success and productivity.</li>
+                        </ul>
+                      </div>
+                    <div className="exp-item">
+                        <div className="job">
+                          <a className="company" href="https://cse.unl.edu/" target="_blank">College of Arts and Sciences, CSCE 235 (Intro to Discrete Structures)</a>
+                          <div className="duration">Jan 2017 &mdash; Dec 2017</div>
+                        </div>
+                        <div className="title">Teaching Assistant</div>
+                        <ul className="description">
+                          <li>Assisted and guided students in the course to understand concepts and clear doubts regarding the assignments.</li>
+                        </ul>
+                      </div>  
+                    <div className="exp-item">
+                        <div className="job">
+                          <a className="company" href="https://nse.unl.edu/" target="_blank">New Student Enrollment Office, UNL</a>
+                          <div className="duration">Aug 2017 &mdash; May 2017</div>
+                        </div>
+                        <div className="title">Welcome Team Leader</div>
+                        <ul className="description">
+                          <li>Planned and executed various activities for new international students to help them smoothly adjust to college life</li>
+                        </ul>
+                      </div> 
+                    <div className="exp-item">
+                        <div className="job">
+                          <a className="company" href="https://akpsi.unl.edu/alpha-kappa-psi-home" target="_blank">Alpha Kappa Psi-Zeta Chapter, UNL</a>
+                          <div className="duration">Feb 2016 &mdash; Sep 2016</div>
+                        </div>
+                        <div className="title">Member</div>
+                        <ul className="description">
+                          <li>Was a member of the Business Fraternity. Helped with social events around campus and learned skills necessary in the professional world.</li>
+                        </ul>
+                      </div>   
+                    </div>
+                </div>
+                <div className="introduction">
+                    <h4>Thesis</h4>
+                    <div className="content">
+                      <span className="intro-p job-pls">As a part of my Honors Thesis I am analyzing the future impact of automated technologies like Machine Learning/Artificial Intelligence on a few industries like Medicine (Biological Sciences) and Transportation. I am aiming to use my two interdisciplinary majors to assist me in answering some important questions which might have a significant impact on these industries in the near future.</span>
+                    </div>
+                  </div>
+                </div>
+                <a className="resume" href={this.props.resumeURL} target="_blank">Grab a PDF of my full resume</a>
+              </div>
+          );
+        }
+      });
+  
+      ReactDOM.render(
+        <App profileData={DATA}/>,
+        document.getElementById('content')
+      );
+  </script>
+</body>
+</html>
