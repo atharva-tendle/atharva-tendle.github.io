@@ -49,8 +49,6 @@ a {
   bottom: 0;
   left: 0;
   background: #2d3436;
-  /* background-image: -webkit-linear-gradient(to top, #0c3483 0%, #2196f3 100%, #6b8cce 100%, #26a69a 100%);
-  background-image: linear-gradient(to top, #0c3483 0%, #2196f3 100%, #6b8cce 100%, #26a69a 100%); */
   opacity: 0.85;
 }
 
@@ -204,20 +202,19 @@ h3.jobStatus{
   font-size: 15px;
 }
 
-.right .introduction .intro-p:first-of-type {
+.right .cards .intro-p:first-of-type {
   margin-top: 0;
 }
 
-.right .introduction .job-pls {
+.right .cards .job-pls {
   font-weight: 500;
-  background-color: #2A54F5;
   background-image: linear-gradient(90deg,#fff 0%,#fff 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   display: inline-block;
 }
 
-.right .introduction{
+.right .cards{
   border-radius: 2px;
   display: inline-block;
   margin: 1rem;
@@ -231,14 +228,14 @@ h3.jobStatus{
 }
 
 
-.right .introduction:hover {
+.right .cards:hover {
   background-image: -webkit-linear-gradient(to left top, #333333 20% , #333333 100%);
   background-image: linear-gradient(to left top, #333333 , #333333);
   box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
 }
 
 @media(hover: none){
-  .right .introduction{
+  .right .cards{
     border-radius: 2px;
     display: inline-block;
     margin: 0 auto;
@@ -252,104 +249,54 @@ h3.jobStatus{
   }
 }
 
-.right .skills{
-  border-radius: 2px;
-  display: inline-block;
-  margin: 1rem;
-  position: relative;
-  width: 80%;
-  padding: 30px 50px 0px 30px;
-  background-image: -webkit-linear-gradient(to left top, #2d3436 20% , #2d3436 100%);
-  background-image: linear-gradient(to left top, #2d3436 , #2d3436);
-  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-}
-
-.right .skills:hover{
-  background-image: -webkit-linear-gradient(to left top, #333333 20% , #333333 100%);
-  background-image: linear-gradient(to left top, #333333 , #333333);
-  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
-  
-}
-
-
-.right .skills .skill-category {
+.right .skill-category {
   margin-bottom: 10px;
 }
 
-.right .skills .skill-category:last-of-type {
+.right .skill-category:last-of-type {
   margin-bottom: 0px;
 }
 
-.right .skills .skill-category > strong {
+.right.skill-category > strong {
   text-transform: uppercase;
   font-size: 14px;
 }
 
-.right .education{
-  border-radius: 2px;
-  display: inline-block;
-  margin: 1rem;
-  position: relative;
-  width: 80%;
-  padding: 30px 50px 0px 30px;
-  background-image: -webkit-linear-gradient(to left top, #2d3436 20% , #2d3436 100%);
-  background-image: linear-gradient(to left top, #2d3436 , #2d3436);
-  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-}
-
-.right .education:hover{
-  background-image: -webkit-linear-gradient(to left top, #333333 20% , #333333 100%);
-  background-image: linear-gradient(to left top, #333333 , #333333);
-  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
-}
-
-.right .education .university {
+.right .university {
   font-weight: 700;
   font-size: 16px;
 }
 
-.right .education .college {
+.right .college {
   font-weight: 700;
   font-style: italic;
   margin-bottom: 10px;
 }
 
-.right .education .major,
-.right .education .minor,
-.right .education .conc,
-.right .education .study-abroad {
+.right .major,
+.right .minor,
+.right .conc,
+.right .study-abroad {
   font-size: 15px;
 }
 
-.right .education .major > strong,
-.right .education .minor > strong,
-.right .education .conc > strong,
-.right .education .study-abroad > strong {
+.right .major > strong,
+.right .minor > strong,
+.right .conc > strong,
+.right .study-abroad > strong {
   font-weight: 500;
 }
 
-.right .education .study-abroad {
+.right .study-abroad {
   margin-top: 10px;
 }
 
-.right .education .grad-date {
+.right .grad-date {
   text-transform: uppercase;
   color: #fff;
   font-size: 13px;
   font-weight: 500;
   margin-top: 20px;
-}
-
-.right .experience{
-  border-radius: 2px;
-  display: inline-block;
-  margin: 1rem;
-  position: relative;
-  width: 80%;
-  padding: 30px 50px 0px 30px;
-  background-image: -webkit-linear-gradient(to left top, #2d3436 20% , #2d3436 100%);
-  background-image: linear-gradient(to left top, #2d3436 , #2d3436);
-  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
 }
 
 .right div{
@@ -358,26 +305,21 @@ h3.jobStatus{
 .right li{
   color: #fff;
 }
-.right .experience:hover{
-  background-image: -webkit-linear-gradient(to left top, #333333 20% , #333333 100%);
-  background-image: linear-gradient(to left top, #333333 , #333333);
-  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
-}
 
-.right .experience .exp-item {
+.right .exp-item {
   margin-bottom: 30px;
 }
 
-.right .experience .exp-item:last-of-type {
+.right .exp-item:last-of-type {
   margin-bottom: 0;
 }
 
-.right .experience .exp-item .job {
+.right .exp-item .job {
   margin: 0;
   font-weight: 700;
 }
 
-.right .experience .exp-item .duration {
+.right .exp-item .duration {
   font-size: 13px;
   font-weight: 500;
   float: right;
@@ -387,47 +329,30 @@ h3.jobStatus{
   top: 1px;
   margin-bottom: 5px;
 }
-.right .projects{
-  border-radius: 2px;
-  display: inline-block;
-  margin: 1rem;
-  position: relative;
-  width: 80%;
-  padding: 30px 50px 0px 30px;
-  background-image: -webkit-linear-gradient(to left top, #2d3436 20% , #2d3436 100%);
-  background-image: linear-gradient(to left top, #2d3436 20% , #2d3436 100%);
-  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-}
-.right .projects p{
+.right p{
   color: #fff;
 }
 
-.right .projects:hover{
-  background-image: -webkit-linear-gradient(to left top, #333333 20% , #333333 100%);
-  background-image: linear-gradient(to left top, #333333 , #333333);
-  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
-}
-
 @media screen and (max-width: 340px) {
-  .right .experience .exp-item .duration {
+  .right .exp-item .duration {
     float: none;
   }
 }
 
-.right .experience .exp-item .title {
+.right .exp-item .title {
   font-weight: 100;
   font-style: italic
 }
 
-.right .projects .project-item {
+.right .project-item {
   margin-bottom: 20px;
 }
 
-.right .projects .project-title {
+.right .project-title {
   font-weight: 700;
 }
 
-.right .projects .project-desc {
+.right .project-desc {
   font-size: 15px;
   margin: 0 0 10px;
 }
@@ -436,7 +361,7 @@ h3.jobStatus{
   display: block;
   width: 100%;
   max-width: 500px;
-  margin: auto auto 20px auto;
+  margin: auto 0px 20px 100px;
   text-align: center;
   padding: 15px 15px;
   background-color: #2d3436;
