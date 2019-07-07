@@ -1,0 +1,26 @@
+languages:
+  - item: Python
+  - item: C++
+  - item: Java
+  - item: HTML
+  - item: CSS
+  - item: JavaScript
+  - item: SQL
+
+libraries and frameworks:
+  - item: Tensorflow
+  - item: Keras
+  - item: Pytorch
+  - item: Numpy
+  - item: Pandas
+  - item: Scikit-Learn
+  - item: OpenCV
+
+
+tools:
+  - item: Bash
+  - item: Git & Github
+  - item: Android Studio
+  - item: AWS(S3, Lambda, Sagemaker) 
+  - item: Jupyter
+  - item: MySQL

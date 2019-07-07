@@ -1,0 +1,25 @@
+<section class="section skills">
+  <div class="section__title">Skills</div>
+  <div class="section__content">
+    <p>I’ve picked up quite a few skills during the course of my internships and school.</p>
+    <p>Here is a list of the technologies that I have used:</p>
+    <div class="skillz">
+      <div class="skillz__category">
+        <div class="skillz__category__label">Languages</div>
+        <ul>
+          {% for language in site.data.skills.languages %}
+          <li class="skillz__category__item">{{language.item}}</li>
+          {% endfor %}
+        </ul>
+      </div>
+      <div class="skillz__category">
+        <div class="skillz__category__label">Tools</div>
+        <ul>
+            {% for tool in site.data.skills.tools %}
+          <li class="skillz__category__item">{{tool.item}}</li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
