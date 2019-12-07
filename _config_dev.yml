@@ -16,6 +16,8 @@ social:
     url: https://github.com/atharva-tendle
   - title: linkedin
     url: https://www.linkedin.com/in/atharva-tendle/
+  - title: medium
+    url: https://medium.com/@atharva.tendle
 
 # Build settings
 markdown: kramdown
