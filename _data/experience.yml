@@ -1,3 +1,18 @@
+- company: Hudl
+  url: https://www.hudl.com/
+  time: May 2020 - Present
+  position: Data Science Intern | Applied Machine Learning 
+
+- company: Openmined
+  url: https://www.openmined.org/
+  time: May 2020 - Present
+  position: Research Engineer | Remote
+
+- company: Department of Computer Science and Engineering
+  url: https://cse.unl.edu/
+  time: Jan 2019 - May 2019 | Aug 2019 - Dec 2019
+  position: Machine Learning Teaching Assistant
+
 - company: Computational Architecture Research Lab
   url: https://www.computationalarchitecturelab.org/
   time: May 2019 - Present
@@ -18,7 +33,3 @@
   time: May 2018 - Aug 2018
   position: Software Development Intern
 
-- company: Department of Computer Science and Engineering
-  url: https://cse.unl.edu/
-  time: Jan 2019 - May 2019
-  position: Machine Learning Teaching Assistant
