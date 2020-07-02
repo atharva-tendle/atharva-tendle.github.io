@@ -7,7 +7,7 @@ languages:
   - item: JavaScript
   - item: SQL
 
-libraries and frameworks:
+libraries-frameworks:
   - item: Tensorflow
   - item: Keras
   - item: Pytorch

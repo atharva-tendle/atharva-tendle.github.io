@@ -1,3 +1,34 @@
+- name: RL-Collaboration and Competition
+  url: https://github.com/atharva-tendle/rl-collaboration-competition
+  code: https://github.com/atharva-tendle/rl-collaboration-competition
+  description:  DDPG agent playing tennis. 
+  used:
+    - thing: Python
+    - thing: Pytorch
+    - thing: Jupyter Notebooks
+    - thing: Unity
+
+
+- name: RL-Continuous Control
+  url: https://github.com/atharva-tendle/rl-continuous-control
+  code: https://github.com/atharva-tendle/rl-continuous-control
+  description:  DDPG agent operating a double-jointed arm to reach an object.
+  used:
+    - thing: Python
+    - thing: Pytorch
+    - thing: Jupyter Notebooks
+    - thing: Unity
+
+- name: RL-Navigation
+  url: https://github.com/atharva-tendle/rl-navigation
+  code: https://github.com/atharva-tendle/rl-navigation
+  description:  DQN agent navigating the environment to collect bananas.
+  used:
+    - thing: Python
+    - thing: Pytorch
+    - thing: Jupyter Notebooks
+    - thing: Unity
+
 - name: DeepLearningProjects
   url: https://github.com/atharva-tendle/DeepLearningProjects
   code: https://github.com/atharva-tendle/DeepLearningProjects
@@ -42,47 +73,3 @@
     - thing: PyBullet
     - thing: Jupyter Notebooks
 
-- name: Deep Learning Homeworks
-  url: https://github.com/ayushm-agrawal/DeepLearningHomeworks
-  code: https://github.com/ayushm-agrawal/DeepLearningHomeworks
-  description: Collection of projects built using Neural Networks, Convolutional Neural Networks and DQN Agents for CSCE 496-Deep Learning
-  used:
-    - thing: Python
-    - thing: Tensorflow
-    - thing: Scikit-Learn
-    - thing: PyBullet
-    - thing: Jupyter Notebooks
-
-- name: Song Recommendation System
-  url: https://github.com/ayushm-agrawal/song_recommendation_system
-  code: https://github.com/ayushm-agrawal/song_recommendation_system
-  description: Basic song recommendation system built using K-Nearest Neighbors, Linear Regression and a Multilayer Perceptron Classifier. Final Project for CSCE 478-Machine Learning 
-  used:
-    - thing: Python
-    - thing: Numpy
-    - thing: Pandas
-    - thing: Scikit-Learn
-    - thing: Jupyter Notebooks/Google Colab
-
-- name: Where Is My TA (WIMTA) App 
-  url: https://github.com/ayushm-agrawal/WIMTA
-  code: https://github.com/ayushm-agrawal/WIMTA
-  description: An efficient TA management system (Android App + static web page) as a part of a Hackathon in order to solve a issue at our university.
-               <a class="small" href="https://devpost.com/software/wimta"> Won Best Project at CornHacks 2018 </a>
-  used:
-    - thing: Android Studio
-    - thing: Java
-    - thing: Firebase
-    - thing: HTML
-    - thing: CSS
-    - thing: Raspberry Pi
-
-- name: Rythmix
-  url: https://github.com/pranavgupta97/Rythmix
-  code: https://github.com/pranavgupta97/Rythmix
-  description: An Anroid app that provides a platform for people to get together and experience an amazing Karaoke session. Built as a final project for CSCE 361-Software Engineering.
-  used:
-  - thing: Java
-  - thing: Android Studio
-  - thing: Youtube API
-  - thing: XML
