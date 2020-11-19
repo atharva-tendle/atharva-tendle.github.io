@@ -1,3 +1,0 @@
-User-agent: *
-Disallow:
-Sitemap: https://atharva-tendle.github.io/sitemap.xml
