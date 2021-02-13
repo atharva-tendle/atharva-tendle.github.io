@@ -13,8 +13,12 @@ picture: assets/images/profile.jpg
 # If you want to include your resume, set to true
 # and specify source (external or local).
 resume: true
-resume-external: true
-resume-url: https://google.com/?q=my+resume
+# resume-external: true
+# resume-url: https://google.com/?q=my+resume
+resume-local: true
+resume-url: assets/Atharva-Tendle_CV.pdf
+
+publications: true
 
 url: https://atharva-tendle.github.io/
 # your url: https://USERNAME.github.io
@@ -30,41 +34,35 @@ permalink: /:title/
 
 # if you don't want comments in your posts, leave categories empty
 disqus:
-  shortname: mydisqus # enter this from your disqus account
+  shortname: atharva-tendle # enter this from your disqus account
   categories: [blog, project] # only show disqus for posts that have these categories
 
 # if you don't have any of social below, comment the line
-facebook: myfacebook
-twitter: mytwitter
+# facebook: myfacebook
+twitter: AtharvaTendle
 # instagram: myinstagram
 # pinterest: mypinterest
-# linkedin: mylinkedin
+linkedin: atharva-tendle/
 # youtube: myyoutube
 # spotify: myspotify
-github: mygithub
+github: atharva-tendle
 # gitlab: mygitlab
 # lastfm: mylastfm
 # stackoverflow: 7044681/mystackoverflow
 # quora: userquora
 # reddit: username
-medium: medium
+# medium: medium
 # vimeo: myvimeo
 # lanyrd: mylanyrd
-email: myemail@gmail.com
+email: atharva.tendle@huskers.unl.edu
 
 authors:
   johndoe:
-    name: John Doe
-    bio: A Man who travels the world eating noodles
+    name: Atharva Tendle
     external-image: false
-    picture: assets/images/profile.jpg
-    twitter: johndoe
-  jamesfoster:
-    name: James Foster
-    bio: A Man who develops software with coffee
-    external-image: false
-    picture: assets/images/james.jpg
-    twitter: jamesfoster
+    picture: assets/Atharva-Tendle_CV.pdf
+    twitter: AtharvaTendle
+
 
 # do you want a larger site? change the option below
 # options: [normal, large] | default: normal
@@ -141,3 +139,47 @@ exclude:
     "node_modules",
     "vendor",
   ]
+
+publications_list:
+  - year_split: true
+    year: 2021
+
+  - title: "Investigating Learning in Deep Neural Networks using Layer-Wise Weight Change"
+    people:
+      - Ayush Manish Agrawal*
+      - Atharva A. Tendle*
+      - Harshvardhan D. Sikka
+      - Sahib Singh
+      - Amr Kayid
+    location: Computing Conference 2021
+    arxiv: https://arxiv.org/pdf/2011.06735.pdf
+
+  - year_split: true
+    year: 2020
+
+  - title: "Investigating Learning in Deep Neural Networks using Layer-Wise Weight Change"
+    people:
+      - Ayush Manish Agrawal*
+      - Atharva Tendle*
+      - Harshvardhan D. Sikka
+      - Sahib Singh
+      - Amr Kayid
+    location: NeurIPS NewInML Workshop 2020
+    arxiv: https://arxiv.org/pdf/2011.06735.pdf
+  
+  - title: "Multimodal Modular Meta-Learning"
+    people:
+      - Harshvardhan D. Sikka
+      - Atharva A. Tendle
+      - Amr Kayid
+    location: NeurIPS Pre-Register Workshop 2020
+    arxiv: https://osf.io/6ek2b/download?format=pdf
+
+  - title: "Deep Learning Methods for Urban Analysis and Health Estimation of Obesity"
+    people:
+      - David Newton
+      - Dan Piatkowski
+      - Wesley Marshall
+      - Atharva A. Tendle
+    location: Education and research in Computer Aided Architectural Design in Europe (eCAADe) 2020
+    arxiv: http://papers.cumincad.org/cgi-bin/works/BrowseTree=series=AZ/Show?ecaade2020_167
