@@ -8,9 +8,9 @@ layout: page
 
 <p>I am a graduate student studying Machine Learning / Deep Learning at the <a href="https://cse.unl.edu/home">University of Nebraska-Lincoln</a>.</p>
 <p>Currently I am researching self-supervised learning techniques for computer vision problems.</p>
-<p>Along with my school work I work as a researcher at <a href="https://manifoldcomputing.com/">Manifold Computing where I work on Meta-Learning and Interpretability.</a>
+<p>Along with my school work, I work as a researcher at <a href="https://manifoldcomputing.com/">Manifold Computing<a>, where I work on Meta-Learning and Interpretability.</a>
 
-<p>In the past interned at:</p> 
+<p>In the past I have interned at:</p> 
 	<ul> 
 		<li> <a href="https://www.hudl.com/">Hudl: </a> worked on Object Detection and Tracking </li>
 		<li> <a href="https://www.computationalarchitecturelab.org/">Computational Architecture Research Lab: </a> Satellite Image Detection</li>
@@ -42,4 +42,4 @@ layout: page
 	<li><a href="https://github.com/">Lorem Lorem</a></li>
 	<li><a href="https://github.com/">Ipsum Dolor</a></li>
 	<li><a href="https://github.com/">Dolor Lorem</a></li>
-</ul> --> -->
+</ul> --> 
