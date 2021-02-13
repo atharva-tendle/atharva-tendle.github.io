@@ -12,9 +12,9 @@ layout: page
     <p class="title"><b>{{pub.title}}</b></p>
     <p class="people">
       {% for author in pub.people %}
-        {% if author == "Luke Metz" %} <b> {% endif %}
+        {% if author == "Atharva A. Tendle" %} <b> {% endif %}
         {{author}}{% if forloop.last == false %},{% endif %}
-        {% if author == "Luke Metz" %}</b>{% endif %}
+        {% if author == "Atharva A. Tendlee" %}</b>{% endif %}
       {% endfor %}
     </p>
     <p class="location">{{pub.location}}</p>
