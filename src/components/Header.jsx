@@ -87,13 +87,16 @@ const Header = () => {
                 <nav className={`nav ${menuOpen ? "open" : ""}`}>
                     <ul className="nav-list">
                         <li>
-                            <a href="#about" onClick={() => setMenuOpen(false)}>
+                            <a
+                                href="#about-header"
+                                onClick={() => setMenuOpen(false)}
+                            >
                                 About
                             </a>
                         </li>
                         <li>
                             <a
-                                href="#publications"
+                                href="#pubs-header"
                                 onClick={() => setMenuOpen(false)}
                             >
                                 Publications
@@ -101,7 +104,7 @@ const Header = () => {
                         </li>
                         <li>
                             <a
-                                href="#contact"
+                                href="#contact-header"
                                 onClick={() => setMenuOpen(false)}
                             >
                                 Contact

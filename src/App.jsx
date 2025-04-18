@@ -37,9 +37,12 @@ function App() {
             <Header />
             <main className="main-content">
                 <Hero />
+                <section id="about-header"></section>
                 <About />
                 {/* <Projects /> */}
+                <section id="pubs-header"></section>
                 <Publications />
+                <section id="contact-header"></section>
                 <Contact />
             </main>
             <Footer />

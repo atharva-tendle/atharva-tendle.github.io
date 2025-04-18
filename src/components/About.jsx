@@ -25,10 +25,10 @@ const About = () => {
                             technologies to solve real-world problems.
                         </p>
                         <p>
-                            When I'm not coding, you'll probably find me
-                            tinkering with my camera gear, experimenting with my
-                            home coffee setup, or scoping out new restaurants
-                            around NYC. I've got a growing list of travel
+                            When I'm not coding, you'll find me tinkering with
+                            my camera gear, experimenting with my home coffee
+                            setup, or scouting new restaurants around NYC. I am
+                            an avid traveler and I have a growing list of
                             destinations that I hope to check off soon.
                         </p>
                     </div>
@@ -36,11 +36,11 @@ const About = () => {
                         <div className="detail-item">
                             <h3>Education</h3>
                             <p>B.S.c in Computer Science and Economics.</p>
-                            <p>M.S.c in Computer Science with a focus on AI.</p>
+                            <p>M.S.c in Computer Science (AI).</p>
                         </div>
                         <div className="detail-item">
                             <h3>Experience</h3>
-                            <p>4+ years in AI R&D</p>
+                            <p>4+ years in AI Research and Development</p>
                         </div>
                         <div className="detail-item">
                             <h3>Location</h3>

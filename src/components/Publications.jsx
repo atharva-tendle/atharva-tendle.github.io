@@ -4,7 +4,7 @@ const Publications = () => {
     const publications = [
         {
             id: 1,
-            title: "Leveraging Contextual Information for Effective Entity Salience Detection",
+            title: "Leveraging Contextual Information for Effective Entity Salience Detection.",
             authors: [
                 "Rajarshi Bhowmik",
                 "Marco Ponza",
@@ -43,7 +43,7 @@ const Publications = () => {
         },
         {
             id: 4,
-            title: "Investigating Learning in Deep Neural Networks using Layer-Wise Weight Change",
+            title: "Investigating Learning in Deep Neural Networks using Layer-Wise Weight Change.",
             authors: [
                 "Ayush Manish Agrawal*",
                 "Atharva Tendle*",
@@ -57,7 +57,7 @@ const Publications = () => {
         },
         {
             id: 5,
-            title: "Multimodal Modular Meta-Learning",
+            title: "Multimodal Modular Meta-Learning.",
             authors: [
                 "Harshvardhan D. Sikka",
                 "Atharva A. Tendle",
@@ -69,7 +69,7 @@ const Publications = () => {
         },
         {
             id: 6,
-            title: "Deep Learning Methods for Urban Analysis and Health Estimation of Obesity",
+            title: "Deep Learning Methods for Urban Analysis and Health Estimation of Obesity.",
             authors: [
                 "David Newton",
                 "Dan Piatkowski",

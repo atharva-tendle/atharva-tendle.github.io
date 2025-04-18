@@ -35,13 +35,13 @@ const Footer = () => {
                     <div className="footer-links">
                         <ul className="footer-nav">
                             <li>
-                                <a href="#about">About</a>
+                                <a href="#about-header">About</a>
                             </li>
                             <li>
-                                <a href="#publications">Publications</a>
+                                <a href="#pubs-header">Publications</a>
                             </li>
                             <li>
-                                <a href="#contact">Contact</a>
+                                <a href="#contact-header">Contact</a>
                             </li>
                         </ul>
                     </div>
