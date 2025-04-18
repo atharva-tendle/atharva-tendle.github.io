@@ -5,3 +5,4 @@ Gemfile.lock
 .bundle
 vendor/
 node_modules/
+dist/
