@@ -1,0 +1,85 @@
+/* App-specific styles */
+
+/* Reset default styles from Vite template */
+#root {
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+    text-align: left;
+}
+
+/* Main app container */
+.app {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Main content area */
+.main-content {
+    flex: 1;
+}
+
+/* Ensure sections take full width */
+section {
+    width: 100%;
+}
+
+/* Ensure proper spacing between sections */
+section:not(:first-child) {
+    margin-top: 2rem;
+}
+
+/* Add smooth transitions for dark mode */
+.app,
+.header,
+.footer,
+section,
+.project-card,
+.contact-form-container,
+.contact-info {
+    transition: background-color 0.3s ease, color 0.3s ease,
+        border-color 0.3s ease;
+}
+
+/* Ensure images don't overflow their containers */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Ensure form elements are properly styled */
+input,
+textarea,
+select,
+button {
+    font-family: inherit;
+}
+
+/* Add subtle animations for interactive elements */
+.btn,
+.project-card,
+.social-icon {
+    transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease;
+}
+
+.btn:hover,
+.social-icon:hover {
+    transform: translateY(-2px);
+}
+
+/* Ensure proper spacing in mobile view */
+@media (max-width: 768px) {
+    .container {
+        padding: 0 1rem;
+    }
+
+    .hero-section {
+        padding-top: 100px;
+    }
+
+    section {
+        padding: 3rem 0;
+    }
+}
