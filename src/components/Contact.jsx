@@ -66,7 +66,7 @@ const Contact = () => {
                         <div className="resume-section">
                             <h3>Resume</h3>
                             <a
-                                href="/assets/Atharva_Tendle_CV.pdf"
+                                href="/atharva-tendle.github.io/assets/Atharva_Tendle_CV.pdf"
                                 className="btn btn-primary resume-btn"
                                 target="_blank"
                                 rel="noopener noreferrer"

@@ -26,7 +26,7 @@ const Hero = () => {
                 </div>
                 <div className="hero-image">
                     <img
-                        src="/assets/profile.JPG"
+                        src="/atharva-tendle.github.io/assets/profile.JPG"
                         alt="Atharva Tendle profile"
                         className="profile-image"
                     />
