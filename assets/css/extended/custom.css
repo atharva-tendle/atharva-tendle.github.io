@@ -1,0 +1,214 @@
+/* ===== PostTrainBench-inspired Warm Sepia Theme ===== */
+
+:root {
+  /* Light mode — Warm Cream (matches posttrainbench light) */
+  --theme: #faf8f3;
+  --entry: #f3f0e8;
+  --primary: #2d2a23;
+  --secondary: #6b655a;
+  --tertiary: #e8e4d9;
+  --content: #2d2a23;
+  --hljs-bg: #252119;
+  --code-bg: #f3f0e8;
+  --border: #d9d4c8;
+  --accent: #a66b4f;
+}
+
+.dark {
+  /* Dark mode — Warm Sepia (matches posttrainbench dark) */
+  --theme: #1a1612;
+  --entry: #252119;
+  --primary: #e8e3d8;
+  --secondary: #aca595;
+  --tertiary: #332d23;
+  --content: #e8e3d8;
+  --hljs-bg: #1a1612;
+  --code-bg: #252119;
+  --border: #3d3728;
+  --accent: #c17d5a;
+}
+
+/* Typography — Monospace everything, like posttrainbench */
+body {
+  font-family: 'JetBrains Mono', 'SF Mono', 'Monaco', 'Inconsolata', 'Fira Mono', 'Source Code Pro', monospace;
+  line-height: 1.7;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+h1, h2, h3, h4, h5, h6,
+.post-title,
+.profile-title {
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+/* Nav — monospace, subtle */
+.nav {
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 500;
+  font-size: 0.875rem;
+}
+
+#top-link {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* Content width */
+.main {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.post-content {
+  font-size: 0.95rem;
+}
+
+/* Links */
+.post-content a {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid var(--border);
+  transition: border-color 0.3s ease;
+}
+
+.post-content a:hover {
+  border-bottom-color: var(--accent);
+}
+
+/* Code blocks */
+.highlight pre {
+  border-radius: 6px !important;
+  padding: 1.2rem !important;
+  border: 1px solid var(--border);
+  font-size: 0.85rem;
+}
+
+code {
+  font-family: 'JetBrains Mono', monospace !important;
+}
+
+code:not(.highlight code) {
+  background: var(--code-bg);
+  padding: 0.15em 0.4em;
+  border-radius: 3px;
+  font-size: 0.875em;
+  border: 1px solid var(--border);
+}
+
+/* Profile image */
+.profile_inner img {
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--border);
+}
+
+/* Buttons — terracotta accent, monospace */
+.profile_inner .buttons a {
+  background: transparent;
+  color: var(--accent);
+  border: 1px solid var(--accent);
+  border-radius: 4px;
+  padding: 0.5rem 1.2rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 500;
+  font-size: 0.85rem;
+  transition: all 0.3s ease;
+}
+
+.profile_inner .buttons a:hover {
+  background: var(--accent);
+  color: #fff;
+}
+
+/* Post list */
+.post-entry {
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  transition: all 0.3s ease;
+}
+
+.post-entry:hover {
+  border-color: var(--accent);
+  transform: translateY(-1px);
+}
+
+.post-entry .entry-header h2 {
+  font-size: 1rem;
+}
+
+/* Footer social icons */
+.social-icons a {
+  transition: all 0.3s ease;
+}
+
+.social-icons a:hover {
+  color: var(--accent) !important;
+  opacity: 1;
+}
+
+/* Table of contents */
+.toc {
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 1rem 1.5rem;
+  background: var(--entry);
+  font-size: 0.85rem;
+}
+
+/* Publications page styling */
+.post-content h2 {
+  margin-top: 2rem;
+  color: var(--accent);
+  font-size: 1.1rem;
+}
+
+.post-content hr {
+  border-color: var(--border);
+  margin: 1.5rem 0;
+}
+
+/* Header / logo area */
+.logo, .logo a {
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+/* Theme toggle — clean, no border box */
+#theme-toggle {
+  border: none;
+  background: none;
+  transition: all 0.3s ease;
+}
+
+#theme-toggle svg {
+  width: 20px;
+  height: 20px;
+}
+
+#theme-toggle:hover {
+  color: var(--accent);
+}
+
+/* Reading time, post meta */
+.post-meta {
+  font-size: 0.8rem;
+  color: var(--secondary);
+}
+
+/* Scrollbar styling for dark mode */
+.dark ::-webkit-scrollbar-thumb {
+  background: var(--border);
+}
+
+.dark ::-webkit-scrollbar-track {
+  background: var(--entry);
+}
+
+/* Selection color */
+::selection {
+  background: var(--accent);
+  color: #fff;
+}
