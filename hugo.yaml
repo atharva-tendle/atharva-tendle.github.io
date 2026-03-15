@@ -6,7 +6,7 @@ theme: "PaperMod"
 paginate: 10
 
 params:
-  defaultTheme: dark
+  defaultTheme: light
   ShowReadingTime: true
   ShowCodeCopyButtons: true
   ShowShareButtons: false
@@ -17,9 +17,9 @@ params:
   homeInfoParams:
     Title: "Hi! I'm Atharva"
     Content: >
-      Senior Research Engineer building intelligent AI systems that combine
-      cutting-edge research with practical engineering. My focus is on developing
-      Generative AI applications that are both powerful and reliable.
+      Senior Research Engineer bridging research and production in AI systems.
+      My focus areas are multimodal search, agentic retrieval, and
+      post-training methods for large language models.
     imageUrl: "/assets/profile.JPG"
     imageTitle: "Atharva Tendle"
     imageWidth: 180
@@ -34,13 +34,15 @@ params:
       url: "https://twitter.com/atharvatendle"
     - name: email
       url: "mailto:atendle13.3.98@gmail.com"
+    - name: googlescholar
+      url: "https://scholar.google.com/citations?user=hByN-sQAAAAJ&hl=en"
     - name: cv
       title: CV
       url: "/assets/Atharva_Tendle_CV.pdf"
 
   buttons:
-    - name: Blog
-      url: /blog/
+    - name: Projects
+      url: /projects/
     - name: Publications
       url: /publications/
     - name: About
@@ -48,9 +50,9 @@ params:
 
 menu:
   main:
-    - identifier: blog
-      name: Blog
-      url: /blog/
+    - identifier: projects
+      name: Projects
+      url: /projects/
       weight: 10
     - identifier: publications
       name: Publications

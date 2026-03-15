@@ -1,7 +1,7 @@
 ---
 title: "Hello World: Welcome to My Blog"
 date: 2026-03-13
-draft: false
+draft: true
 tags: []
 math: true
 summary: "A first post to kick things off — with some code and math to test the setup."
