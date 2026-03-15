@@ -1,0 +1,96 @@
+baseURL: "https://atharva-tendle.github.io/"
+languageCode: "en-us"
+title: "Atharva Tendle"
+theme: "PaperMod"
+
+pagination:
+  pagerSize: 10
+
+params:
+  defaultTheme: light
+  label:
+    icon: "/assets/profile.JPG"
+    iconHeight: 30
+  ShowReadingTime: true
+  ShowCodeCopyButtons: true
+  ShowShareButtons: false
+  ShowPostNavLinks: true
+  ShowBreadCrumbs: false
+  showtoc: true
+
+  homeInfoParams:
+    Title: "Hi! I'm Atharva"
+    Content: >
+      Senior Research Engineer bridging research and production in AI systems.
+      My focus areas are multimodal search, agentic retrieval, and
+      post-training methods for large language models.
+    imageUrl: "/assets/profile.JPG"
+    imageTitle: "Atharva Tendle"
+    imageWidth: 180
+    imageHeight: 180
+
+  socialIcons:
+    - name: github
+      url: "https://github.com/atharva-tendle"
+    - name: linkedin
+      url: "https://linkedin.com/in/atharva-tendle"
+    - name: x
+      url: "https://twitter.com/atharvatendle"
+    - name: email
+      url: "mailto:atendle13.3.98@gmail.com"
+    - name: googlescholar
+      url: "https://scholar.google.com/citations?user=hByN-sQAAAAJ&hl=en"
+    - name: cv
+      title: CV
+      url: "/assets/Atharva_Tendle_CV.pdf"
+
+  buttons:
+    - name: Projects
+      url: /projects/
+    - name: Publications
+      url: /publications/
+    - name: About
+      url: /about/
+
+menu:
+  main:
+    - identifier: projects
+      name: Projects
+      url: /projects/
+      weight: 10
+    - identifier: publications
+      name: Publications
+      url: /publications/
+      weight: 20
+    - identifier: about
+      name: About
+      url: /about/
+      weight: 30
+
+markup:
+  goldmark:
+    extensions:
+      passthrough:
+        delimiters:
+          block:
+            - - "$$"
+              - "$$"
+          inline:
+            - - "$"
+              - "$"
+        enable: true
+    renderer:
+      unsafe: true
+  highlight:
+    codeFences: true
+    guessSyntax: true
+    lineNos: false
+    style: monokai
+
+outputs:
+  home:
+    - HTML
+    - RSS
+    - JSON
+
+enableRobotsTXT: true
