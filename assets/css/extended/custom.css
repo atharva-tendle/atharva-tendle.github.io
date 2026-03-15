@@ -176,6 +176,12 @@ code:not(.highlight code) {
   letter-spacing: -0.02em;
 }
 
+.logo img[aria-label="logo"] {
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 0.5rem;
+}
+
 /* Theme toggle — clean, no border box */
 #theme-toggle {
   border: none;

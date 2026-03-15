@@ -8,6 +8,9 @@ pagination:
 
 params:
   defaultTheme: light
+  label:
+    icon: "/assets/profile.JPG"
+    iconHeight: 30
   ShowReadingTime: true
   ShowCodeCopyButtons: true
   ShowShareButtons: false

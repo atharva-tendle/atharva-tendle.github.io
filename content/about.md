@@ -9,7 +9,7 @@ I'm a Senior Research Engineer with ~5 years of experience bridging research and
 
 At Bloomberg, I lead research into multimodal search architectures — evaluating Vision-Language Models against traditional text-based retrieval and implementing late-interaction techniques like ColPali-style scoring to improve retrieval precision across diverse data modalities. I also develop agentic retrieval pipelines that use query decomposition and recursive refinement to resolve complex, underspecified queries.
 
-On the post-training side, I have hands-on experience with SFT, PeFT, and RL-based training methods (TRL), as well as designing LLM-as-a-judge evaluation workflows for assessing relevance and factuality in RAG systems.
+On the post-training side, I have hands-on experience with SFT, PeFT, and RL-based training methods, as well as designing LLM-as-a-judge evaluation workflows for assessing relevance and factuality in RAG systems.
 
 I'm have contributed to open-source projects like [LlamaIndex](https://github.com/run-llama/llama_index/pull/19933) in the past, and have served as a reviewer for ACL ARR and ICAIF.
 
