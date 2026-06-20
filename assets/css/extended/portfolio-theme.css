@@ -1,0 +1,135 @@
+/* ==========================================================================
+   Portfolio identity, matched to "The Pocket Coding Agent" blog series.
+   Inter + JetBrains Mono, forest green + burnt sienna accents, light/dark.
+   PaperMod loads assets/css/extended/*.css last, so these overrides win.
+
+   TODO (deferred): retire the old `custom.css` (Warm Sepia / monospace) +
+   `fonts.css` and fold their useful bits (rounded avatar, post-card hover,
+   TOC, selection color) in here, so there is ONE theme. Right now custom.css
+   is ~90% overridden by this file; leftover selectors leak through one at a
+   time (the logo/nav font was one such leak, now overridden below).
+   ========================================================================== */
+
+:root {
+  --theme:     #ffffff;
+  --entry:     #ffffff;
+  --primary:   #1f2328;
+  --secondary: #5b626b;
+  --tertiary:  #eef0f2;
+  --content:   #1f2328;
+  --code-bg:   #f6f7f8;
+  --border:    #e4e7ea;
+  --radius:    14px;
+
+  --accent:      #2f6f4e;   /* forest green */
+  --accent-soft: #2f6f4e16;
+  --rust:        #a8551f;   /* burnt sienna */
+
+  --sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, monospace;
+}
+
+.dark {
+  --theme:     #18191b;
+  --entry:     #202225;
+  --primary:   #dce0e4;
+  --secondary: #9aa1a9;
+  --tertiary:  #26292d;
+  --content:   #c9ced4;
+  --code-bg:   #1f2124;
+  --border:    #2c2f34;
+
+  --accent:      #6cae8e;
+  --accent-soft: #6cae8e1c;
+  --rust:        #d98a5a;
+}
+
+/* ----- Typography -------------------------------------------------------- */
+body,
+.first-entry .entry-header h1,
+.post-title,
+.entry-header h2,
+h1, h2, h3, h4 {
+  font-family: var(--sans);
+}
+body { letter-spacing: -.003em; }
+code, pre, kbd, .post-content pre code, .post-content code {
+  font-family: var(--mono);
+}
+
+/* tighten hero + headings to the blog's display feel */
+.first-entry .entry-header h1 { letter-spacing: -.02em; }
+.post-title { letter-spacing: -.02em; }
+.post-content h1, .post-content h2, .post-content h3 { letter-spacing: -.01em; }
+
+/* ----- Accent: links ----------------------------------------------------- */
+.post-content a {
+  color: var(--accent);
+  box-shadow: 0 1px 0 0 var(--accent);
+}
+.post-content a:hover { box-shadow: 0 2px 0 0 var(--accent); }
+.social-icons a:hover svg { color: var(--accent); }
+
+/* ----- Home buttons as pills -------------------------------------------- */
+.buttons .button {
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  transition: border-color .15s ease, background .15s ease, color .15s ease;
+}
+.buttons .button:hover {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+/* ----- Project card (Projects page) ------------------------------------- */
+.project-card {
+  display: block;
+  text-decoration: none;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.4rem 1.5rem;
+  background: var(--entry);
+  transition: border-color .15s ease, transform .15s ease, box-shadow .15s ease;
+}
+.project-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+  box-shadow: 0 1px 2px rgba(16,22,28,.04), 0 8px 24px rgba(16,22,28,.06);
+}
+.project-card__top { display: flex; align-items: center; gap: .6rem; margin-bottom: .7rem; }
+.project-card__tag {
+  font-family: var(--mono); font-size: .72rem; font-weight: 700;
+  color: var(--accent); background: var(--accent-soft);
+  padding: .25em .6em; border-radius: 6px;
+  text-transform: uppercase; letter-spacing: .04em;
+}
+.project-card__status {
+  margin-left: auto; font-family: var(--mono); font-size: .7rem; letter-spacing: .04em;
+  text-transform: uppercase; color: var(--secondary);
+  border: 1px solid var(--border); padding: .15em .55em; border-radius: 999px;
+}
+.project-card__status.is-ongoing { color: var(--accent); border-color: var(--accent); }
+.project-card__status.is-done    { color: var(--rust);   border-color: var(--rust); }
+.project-card__title {
+  font-size: 1.32rem; font-weight: 680; color: var(--primary);
+  margin: 0 0 .35rem; letter-spacing: -.01em;
+}
+.project-card__desc { color: var(--secondary); font-size: .98rem; line-height: 1.6; margin: 0 0 .9rem; }
+.project-card__cta { font-family: var(--mono); font-size: .82rem; font-weight: 600; color: var(--accent); }
+
+/* ----- Header: match the blog's translucent bar + link coloring --------- */
+.header {
+  position: sticky; top: 0; z-index: 50;
+  background: color-mix(in srgb, var(--theme) 82%, transparent);
+  -webkit-backdrop-filter: saturate(180%) blur(12px);
+  backdrop-filter: saturate(180%) blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+.nav { font-family: var(--sans); }                  /* override old monospace theme */
+.logo a { font-family: var(--sans); font-weight: 650; letter-spacing: -.01em; color: var(--primary); }
+#menu a { color: var(--secondary); font-size: .95rem; font-weight: 500; transition: color .15s ease; }
+#menu a:hover { color: var(--primary); }
+#menu .active { color: var(--primary); border-bottom-color: var(--accent); }
+#theme-toggle { color: var(--secondary); transition: color .15s ease; }
+#theme-toggle:hover { color: var(--primary); }

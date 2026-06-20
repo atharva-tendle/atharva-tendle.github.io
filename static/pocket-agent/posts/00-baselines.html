@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Baselines: what a 0.8B model can already do | The Pocket Coding Agent</title>
+<meta name="description" content="Wiring a raw 0.8B Qwen3.5 into Claude Code and pointing a 19-task agentic harness at it. Three findings that set the rules for everything that follows.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;680;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/style.css">
+<script>(function(){try{var t=localStorage.getItem('pref-theme')||'light';document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+</head>
+<body>
+
+<header class="site-header">
+  <nav class="nav">
+    <a class="nav__brand" href="../index.html"><span class="dot"></span> The Pocket Coding Agent</a>
+    <span class="nav__spacer"></span>
+    <div class="nav__links">
+      <a href="/projects/">Projects</a>
+      <a href="/publications/">Publications</a>
+      <a href="/about/">About</a>
+      <a href="https://github.com/atharva-tendle/oss-code" target="_blank" rel="noopener">GitHub</a>
+      <button class="theme-toggle" aria-label="Toggle theme">
+        <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+        <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+      </button>
+    </div>
+  </nav>
+</header>
+
+<main class="wrap">
+  <p class="eyebrow">Baselines</p>
+  <h1>What a 0.8B model can already do</h1>
+  <p class="post-meta">Research diary, March 2026. First in the series on post-training a small Qwen3.5 model for agentic coding.</p>
+
+  <p>Before changing a single weight, I needed a starting line: what can the untrained model already do inside an agentic coding loop? I decided to go with <a href="https://artificialanalysis.ai/articles/qwen3-5-small-models" target="_blank" rel="noopener">Qwen3.5-0.8B</a>, the smallest of Alibaba&rsquo;s Qwen3.5 small series (0.8B / 2B / 4B / 9B, Apache 2.0, released March 2026). To get my feet wet, I wired the raw model into Claude Code itself, just to see whether it could drive the loop and emit valid tool calls at all.</p>
+
+  <div class="callout">
+    <p><span class="callout__title">Setup.</span> RTX 5070 Ti (16&nbsp;GB), Ollama for serving, Claude Code as the agent. Ollama bundles its own CUDA and serves the Anthropic API natively, so there&rsquo;s no llama.cpp build and no proxy in front of it. The one setting that matters is the context window: Claude Code&rsquo;s system prompt is ~38K tokens and Ollama defaults to 4K, silently truncating it, so the model &ldquo;does nothing&rdquo; because it never saw your message. Set <code>num_ctx</code> to 65536 (<code>ollama create qwen3.5:0.8b-cc -f Modelfile</code>, ~5&nbsp;GiB VRAM) and it works.</p>
+  </div>
+
+  <p>Wiring it in was enough to confirm the model could execute the loop, albeit clumsily and in a half-broken way. That was encouraging, but a vibe is not a measurement, and I wanted numbers I could actually trust. So the next step was to run it through a small evaluation harness built for exactly this, which is the subject of the next post; here I just point that harness at the untrained model and watch. Two settings end up shaping everything that follows. The first is whether the model runs <strong>Raw</strong> (tools only) or <strong>Full</strong> (tools plus a small system prompt of tool-use rules); the second is whether <strong>thinking</strong> is on or off. I also ran the next size up, the 2B, alongside the 0.8B, not as a second subject but as a ruler to read the small model&rsquo;s numbers against. Three findings came out of that first look, and each one shaped a decision I made later in training.</p>
+
+  <h2 id="finding-1">Finding 1: thinking hurts at this scale</h2>
+
+  <figure>
+    <img src="../assets/img/fig3_think.png" alt="Bar chart comparing task scores with thinking on versus off">
+    <figcaption>Reasoning mode on vs off. The extra tokens don&rsquo;t buy better decisions at this size.</figcaption>
+  </figure>
+
+  <p>The first thing I tried was turning reasoning on, expecting it to help. It did the opposite. With thinking on, the 0.8B&rsquo;s Raw average across the 19 tasks slipped from <strong>0.89 to 0.84</strong>, and when I traced where the points went, almost all of the loss came down to a single thing: knowing when to stop. On the test that just checks whether the model notices it is already done, thinking dragged a clean 1.00 down to 0.76 over nine runs, because the extra tokens kept talking it past a correct stopping point and into one more unnecessary tool call. The 2B showed the same pattern, only sharper: its read of whether a task was even finished fell from 1.00 to 0.33 once thinking was on. At this scale the reasoning didn&rsquo;t buy better decisions, it just gave the model room to second-guess a stop it had already gotten right.</p>
+
+  <p>This isn&rsquo;t a quirk of my setup. There&rsquo;s a growing literature on agentic models overthinking: the <a href="https://arxiv.org/abs/2502.08235" target="_blank" rel="noopener">reasoning-action dilemma</a> is that internal deliberation trades off against acting on feedback, higher overthinking correlates with lower task completion, and smaller models are the most susceptible. One <a href="https://arxiv.org/abs/2510.00546" target="_blank" rel="noopener">study of tool use</a> describes the exact failure I keep seeing: the model reaches a correct tool call, then keeps reasoning and overwrites it with a worse one. Rather than try to cure this, I chose to sidestep it for this exploration. <strong>Decision: no reasoning/thinking in the training data.</strong></p>
+
+  <h2 id="finding-2">Finding 2: the system prompt drowns the model</h2>
+
+  <figure>
+    <img src="../assets/img/fig1_raw_vs_full.png" alt="Raw versus Full condition scores for both model sizes">
+    <figcaption>Adding a reasonable system prompt drops the 0.8B from <b>0.89 to 0.68</b>.</figcaption>
+  </figure>
+
+  <p>The second thing I looked at was the system prompt, and here the drop was steeper. Adding a reasonable set of tool-use instructions took the 0.8B from <span class="chips"><span class="chip chip--full"><span class="k">full</span><span class="v">0.89</span></span> <span class="chip chip--raw"><span class="k">→</span><span class="v">0.68</span></span></span>. One task makes the reason plain. I gave it a simple request, <em>&ldquo;What dependencies does this project have? Check pyproject.toml,&rdquo;</em> and watched the two conditions split apart:</p>
+
+<pre class="transcript"><span class="label ok">raw · 2 turns · reward 1.00</span>
+  <b>Read</b>  pyproject.toml  <span class="arrow">→</span>  <span class="ok">answers, stops.</span>
+
+<span class="label bad">full · 6 turns · reward 0.40</span>
+  <b>Read</b>  sandbox/pyproject.toml   <span class="arrow">→</span>  <span class="bad">Error: File not found</span>
+  <b>Glob</b>  **/*.toml                <span class="arrow">→</span>  <span class="note">(nothing)</span>
+  <b>Glob</b>  **                       <span class="arrow">→</span>  <span class="note">(nothing)</span>
+  <span class="note">...three more turns of flailing</span></pre>
+
+  <p>The behavioral rules that are supposed to help instead sent it hunting and looping. My read is that at this scale the model treats every instruction as universal truth rather than judging when it actually applies, so a sensible rule turns into a literal command it follows straight off a cliff. Reasoning might have let it catch itself here, but as Finding 1 showed, turning thinking on only traded this problem for worse ones. So for now I went the other way and decided to <strong>bake the protocol into the weights</strong> during SFT, so the model needs no instructions at inference at all. Closing that 0.89-to-0.68 gap became the first thing SFT had to do.</p>
+
+  <h2 id="finding-3">Finding 3: on <em>this harness</em>, the smaller model scored higher</h2>
+
+  <p>In the Raw condition the 0.8B actually edged out the 2B, 0.89 to 0.84, winning 7 of the 11 harder tasks. I want to be careful with that, because it is almost certainly not evidence that the 0.8B is the better model. These are 19 narrow tasks scored on exact matches, three runs each, so a gap that small sits well inside what sample size and test design can produce on their own. By any broad measure the 2B is the stronger model. It just happened to struggle on this particular set.</p>
+
+  <p>Why it struggled is the interesting part. My scoring rewards literal restraint, and the 2B spent its extra capacity trying to be helpful in ways that cost it points. Take <code>two_sum</code>, where the 0.8B scored 0.93 and the 2B only 0.60:</p>
+
+<pre class="transcript"><span class="label bad">2B · over-helpful</span>
+  <b>Write</b>  solutions/solution.py        <span class="note"># invented a directory nobody asked for</span>
+  def two_sum(...) <span class="bad">-> tuple[int, int]</span>  <span class="note"># returns a tuple; the tests want a list</span></pre>
+
+  <p>Inventing a directory, hedging the return type, adding structure nobody asked for: each of those is a reasonable instinct on its own, and each one is penalized by an exact-match check. So the lesson here isn&rsquo;t &ldquo;small beats big.&rdquo; It&rsquo;s that my harness rewards doing the literal, boring thing, which tells me to read these absolute numbers as directional rather than precise. That turned out to be the real job the 2B did for me: it worked as a ruler that exposed the harness&rsquo;s bias before I started trusting individual scores later in the series. From here on the exploration stays 0.8B only, partly because it&rsquo;s the model I&rsquo;ve actually finished training and the more interesting target for &ldquo;how small is too small,&rdquo; and partly because it trains faster and on less hardware. That said, those harness biases are something I want to circle back to, and to put the 2B through a far more thorough test when I do.</p>
+
+  <h2 id="breaking-points">Breaking Points</h2>
+
+  <figure>
+    <img src="../assets/img/fig2_per_task.png" alt="Per-task scores for the 0.8B model in the Raw condition">
+    <figcaption>Per-task scores, 0.8B Raw. Most bars are green; the red bars are the work.</figcaption>
+  </figure>
+
+  <p>Most of the bars are green. The model picks the right tool, stops cleanly, reads before it responds, and handles relative paths without trouble. The red bars are where the work is. The worst of them was absolute paths, at 0.53, and it failed the same way on every run:</p>
+
+<pre class="transcript"><span class="note">prompt:</span>  Create a file at /home/user/project/test_path.py
+  <b>Write</b>  file_path=<span class="bad">"/home/user/project/test_path.py"</span>
+       <span class="arrow">→</span> Wrote 4 bytes to <span class="bad">home/user/project/test_path.py</span></pre>
+
+  <p>The leading slash gets stripped, so what should have been a file at the root lands as a deep nested folder instead. The other two red bars tell a similar story: the model creates scratch files nobody asked for (0.61), and on bug fixes it either edits without reading first or reads and then changes the wrong thing (0.67).</p>
+
+  <div class="callout callout--rust">
+    <p><span class="callout__title">A note on method.</span> I learned early that a single run can lie. One off-the-cuff pass looked like 5 of 8 solved, while the three-run average for the same tasks came out to 42%. So everything here is averaged over three generations.</p>
+  </div>
+
+  <h2 id="starting-line">The starting line</h2>
+
+  <p>That leaves me with a number to beat, the 0.8B, Raw, thinking off, at <strong>0.89 across the 19 tasks</strong>, and a short punch list for SFT:</p>
+
+  <ol>
+    <li>Absolute path handling (hardest, fails every run)</li>
+    <li>Read-then-edit (bug fixing)</li>
+    <li>Avoid creating unrequested files</li>
+    <li>Keep the good behaviors intact under load</li>
+  </ol>
+
+  <p>Underneath all four the goal is the same: get the protocol into the weights so the system-prompt gap closes on its own. The next post steps back to the harness itself and how the training data gets made, including why a homemade 19-task loop turned out to be the right fit, before we get to the SFT run.</p>
+
+  <nav class="postnav">
+    <a class="prev" href="../index.html"><div class="dir">← Series</div><div class="ttl">The Pocket Coding Agent</div></a>
+    <span class="next is-todo"><div class="dir">Coming soon</div><div class="ttl">The harness and the ingredients</div></span>
+  </nav>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap wrap--wide">
+    <span>Written by <a href="/about/">Atharva Tendle</a>, 2026.</span>
+    <span class="nav__spacer"></span>
+    <a href="#top">Back to top</a>
+  </div>
+</footer>
+
+<script src="../assets/js/main.js"></script>
+</body>
+</html>
