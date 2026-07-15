@@ -41,7 +41,9 @@
     <p><span class="callout__title">Setup.</span> RTX 5070 Ti (16&nbsp;GB), Ollama for serving, Claude Code as the agent. Ollama bundles its own CUDA and serves the Anthropic API natively, so there&rsquo;s no llama.cpp build and no proxy in front of it. The one setting that matters is the context window: Claude Code&rsquo;s system prompt is ~38K tokens and Ollama defaults to 4K, silently truncating it, so the model &ldquo;does nothing&rdquo; because it never saw your message. Set <code>num_ctx</code> to 65536 (<code>ollama create qwen3.5:0.8b-cc -f Modelfile</code>, ~5&nbsp;GiB VRAM) and it works.</p>
   </div>
 
-  <p>Wiring it in was enough to confirm the model could execute the loop, albeit clumsily and in a half-broken way. That was encouraging, but a vibe is not a measurement, and I wanted numbers I could actually trust. So the next step was to run it through a small evaluation harness built for exactly this, which is the subject of the next post; here I just point that harness at the untrained model and watch. Two settings end up shaping everything that follows. The first is whether the model runs <strong>Raw</strong> (tools only) or <strong>Full</strong> (tools plus a small system prompt of tool-use rules); the second is whether <strong>thinking</strong> is on or off. I also ran the next size up, the 2B, alongside the 0.8B, not as a second subject but as a ruler to read the small model&rsquo;s numbers against. Three findings came out of that first look, and each one shaped a decision I made later in training.</p>
+  <p>Wiring it in confirmed the model could execute the loop, clumsily and half-broken, but enough to be encouraging. A vibe isn&rsquo;t a measurement, though, and I wanted numbers I could trust. So I pointed a small evaluation harness at the untrained model and watched. (The harness itself is the <a href="01a-harness-and-data.html">next post</a>; here I just read what it tells me.)</p>
+
+  <p>Two settings shape everything that follows: whether the model runs <strong>Raw</strong> (tools only) or <strong>Full</strong> (tools plus a small system prompt of tool-use rules), and whether <strong>thinking</strong> is on or off. I also ran the next size up, the 2B, next to the 0.8B, not as a second subject but as a ruler to read the small model&rsquo;s numbers against. Three findings came out of that first look, and each one set a rule I followed later in training.</p>
 
   <h2 id="finding-1">Finding 1: thinking hurts at this scale</h2>
 
@@ -50,7 +52,9 @@
     <figcaption>Reasoning mode on vs off. The extra tokens don&rsquo;t buy better decisions at this size.</figcaption>
   </figure>
 
-  <p>The first thing I tried was turning reasoning on, expecting it to help. It did the opposite. With thinking on, the 0.8B&rsquo;s Raw average across the 19 tasks slipped from <strong>0.89 to 0.84</strong>, and when I traced where the points went, almost all of the loss came down to a single thing: knowing when to stop. On the test that just checks whether the model notices it is already done, thinking dragged a clean 1.00 down to 0.76 over nine runs, because the extra tokens kept talking it past a correct stopping point and into one more unnecessary tool call. The 2B showed the same pattern, only sharper: its read of whether a task was even finished fell from 1.00 to 0.33 once thinking was on. At this scale the reasoning didn&rsquo;t buy better decisions, it just gave the model room to second-guess a stop it had already gotten right.</p>
+  <p>The first thing I tried was turning reasoning on, expecting it to help. It did the opposite. With thinking on, the 0.8B&rsquo;s Raw average across the 19 tasks slipped from <strong>0.89 to 0.84</strong>, and almost all of the lost points traced to one thing: knowing when to stop.</p>
+
+  <p>On the test that checks whether the model notices it is already done, thinking dragged a clean 1.00 down to 0.76 over nine runs, because the extra tokens kept talking it past a correct stopping point and into one more needless tool call. The 2B showed the same pattern, only sharper: its read of whether a task was even finished fell from 1.00 to 0.33 once thinking was on. At this scale the reasoning didn&rsquo;t buy better decisions, it just gave the model room to second-guess a stop it had already gotten right.</p>
 
   <p>This isn&rsquo;t a quirk of my setup. There&rsquo;s a growing literature on agentic models overthinking: the <a href="https://arxiv.org/abs/2502.08235" target="_blank" rel="noopener">reasoning-action dilemma</a> is that internal deliberation trades off against acting on feedback, higher overthinking correlates with lower task completion, and smaller models are the most susceptible. One <a href="https://arxiv.org/abs/2510.00546" target="_blank" rel="noopener">study of tool use</a> describes the exact failure I keep seeing: the model reaches a correct tool call, then keeps reasoning and overwrites it with a worse one. Rather than try to cure this, I chose to sidestep it for this exploration. <strong>Decision: no reasoning/thinking in the training data.</strong></p>
 
@@ -84,7 +88,9 @@
   <b>Write</b>  solutions/solution.py        <span class="note"># invented a directory nobody asked for</span>
   def two_sum(...) <span class="bad">-> tuple[int, int]</span>  <span class="note"># returns a tuple; the tests want a list</span></pre>
 
-  <p>Inventing a directory, hedging the return type, adding structure nobody asked for: each of those is a reasonable instinct on its own, and each one is penalized by an exact-match check. So the lesson here isn&rsquo;t &ldquo;small beats big.&rdquo; It&rsquo;s that my harness rewards doing the literal, boring thing, which tells me to read these absolute numbers as directional rather than precise. That turned out to be the real job the 2B did for me: it worked as a ruler that exposed the harness&rsquo;s bias before I started trusting individual scores later in the series. From here on the exploration stays 0.8B only, partly because it&rsquo;s the model I&rsquo;ve actually finished training and the more interesting target for &ldquo;how small is too small,&rdquo; and partly because it trains faster and on less hardware. That said, those harness biases are something I want to circle back to, and to put the 2B through a far more thorough test when I do.</p>
+  <p>Each of those, inventing a directory, hedging the return type, adding structure nobody asked for, is a reasonable instinct on its own. An exact-match check punishes all three. So the lesson isn&rsquo;t &ldquo;small beats big&rdquo;; it&rsquo;s that this harness rewards doing the literal, boring thing, which means these absolute numbers are better read as directional than precise.</p>
+
+  <p>That was the real job the 2B did for me: a ruler that exposed the harness&rsquo;s bias before I leaned on individual scores later in the series. From here the exploration stays 0.8B-only, because it&rsquo;s the model I&rsquo;ve finished training, the more interesting target for &ldquo;how small is too small,&rdquo; and it&rsquo;s faster to train. The 2B, and the biases it exposed, are worth a more thorough test down the line.</p>
 
   <h2 id="breaking-points">Breaking Points</h2>
 
@@ -120,7 +126,7 @@
 
   <nav class="postnav">
     <a class="prev" href="../index.html"><div class="dir">← Series</div><div class="ttl">The Pocket Coding Agent</div></a>
-    <span class="next is-todo"><div class="dir">Coming soon</div><div class="ttl">The harness and the ingredients</div></span>
+    <a class="next" href="01a-harness-and-data.html"><div class="dir">Next →</div><div class="ttl">The harness and the ingredients</div></a>
   </nav>
 </main>
 
