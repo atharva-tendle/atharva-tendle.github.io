@@ -21,9 +21,11 @@ params:
   homeInfoParams:
     Title: "Hi! I'm Atharva"
     Content: >
-      Senior Research Engineer bridging research and production in AI systems.
-      My focus areas are multimodal search, agentic retrieval, and
-      post-training methods for large language models.
+      Senior Research Engineer working on multimodal enrichments for search,
+      agentic retrieval, and post-training for language models. Lately I've been curious how small a
+      language model can get while still coding on its own, which turned into
+      [a whole side project](/pocket-agent/). Off the clock, you'll find me at a
+      piano, dialing in a coffee, or scoping out a new restaurant in NYC.
     imageUrl: "/assets/profile.JPG"
     imageTitle: "Atharva Tendle"
     imageWidth: 180
